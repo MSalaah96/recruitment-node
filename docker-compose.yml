@@ -4,12 +4,13 @@ services:
   carbon-gateway:
     image: nginx
     restart: unless-stopped
+    container_name: carbon-gateway
     ports:
-      - 6000:80
-      - 6001:443
+      - 6010:80
+      - 6011:443
     networks:
       carbon-network:
-        ipv4_address: 182.39.0.1
+        ipv4_address: 182.39.0.2
         aliases:
           - carbon.local.com
     volumes:
@@ -26,7 +27,7 @@ services:
     container_name: carbon-database
     networks:
       carbon-network:
-        ipv4_address: 182.39.0.2
+        ipv4_address: 182.39.0.3
         aliases:
           - carbon.database.local.com
     ports:
@@ -42,7 +43,7 @@ services:
       - 6004:3000
     networks:
         carbon-network:
-          ipv4_address: 182.39.0.3
+          ipv4_address: 182.39.0.4
           aliases:
             - carbon.api.local.com
     restart: unless-stopped
@@ -66,4 +67,4 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 182.39.0.0/16
+        - subnet: 182.39.0.0/24
