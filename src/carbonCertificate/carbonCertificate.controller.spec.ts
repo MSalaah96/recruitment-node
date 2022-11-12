@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CarbonCertifcateController } from './carbon-certifcate.controller';
+import { CarbonCertifcateController } from './carbonCertificate.controller';
 
 describe('CarbonCertifcateController', () => {
   let controller: CarbonCertifcateController;

@@ -6,7 +6,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { CarbonCertifcateStatus } from '../constants/carbon-certifcate.constants';
+import { CarbonCertifcateStatus } from '../constants/carbonCertificate.constants';
 
 @Entity('carbon_certifcates')
 export class CarbonCertificateEntity {

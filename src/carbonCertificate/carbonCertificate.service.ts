@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { CarbonCertificateEntity } from './entities/carbon-certifcate.entity';
+import { CarbonCertificateEntity } from './entities/carbonCertificate.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { carbonCertifcateApiParams } from './carbon-certifcate.ApiParams';
+import { carbonCertificateApiParams } from './carbonCertificate.ApiParams';
 import { Any, In, Repository } from 'typeorm';
 
 @Injectable()
-export class CarbonCertifcateService {
+export class CarbonCertificateService {
   constructor(
     @InjectRepository(CarbonCertificateEntity)
     private carbonCertifcateRepository: Repository<CarbonCertificateEntity>,
   ) {}
 
-  async getAll(params: carbonCertifcateApiParams): Promise<
+  async getAll(params: carbonCertificateApiParams): Promise<
     | {
         result: CarbonCertificateEntity[];
         pages: number;
@@ -20,11 +20,9 @@ export class CarbonCertifcateService {
       }
     | CarbonCertificateEntity[]
   > {
-    console.log('params: ', params);
     const query = {};
-
     if (params.status) {
-      query['status'] = In(params.status.split(','));
+      query['status'] = In(params.status);
     }
     if (params && params.paginate) {
       const count = await this.carbonCertifcateRepository.count({

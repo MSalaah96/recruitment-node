@@ -1,8 +1,8 @@
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 import { DataSource } from 'typeorm';
 import { UserEntity } from '../../users/entities/user.entity';
-import { CarbonCertificateEntity } from '../../carbon-certifcate/entities/carbon-certifcate.entity';
-import { CarbonCertifcateStatus } from '../../carbon-certifcate/constants/carbon-certifcate.constants';
+import { CarbonCertificateEntity } from '../../carbonCertificate/entities/carbonCertificate.entity';
+import { CarbonCertifcateStatus } from '../../carbonCertificate/constants/carbonCertificate.constants';
 export default class UserSeeder implements Seeder {
   public async run(
     dataSource: DataSource,

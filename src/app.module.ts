@@ -9,9 +9,8 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { DataSource } from 'typeorm';
 import { typeOrmAsyncConfig } from './config/typeorm.config';
-import { CarbonCertifcateModule } from './carbon-certifcate/carbon-certifcate.module';
 import { UserCarbonCertifcateService } from './user-carbon-certifcate/user-carbon-certifcate.service';
-import { QueryParserMiddleware } from './queryParser.middleware';
+import { CarbonCertifcateModule } from './carbonCertificate/carbonCertificate.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -36,9 +35,4 @@ import { QueryParserMiddleware } from './queryParser.middleware';
 })
 export class AppModule {
   constructor(private dataSource: DataSource) {}
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(QueryParserMiddleware)
-      .forRoutes({ path: '*', method: RequestMethod.ALL });
-  }
 }

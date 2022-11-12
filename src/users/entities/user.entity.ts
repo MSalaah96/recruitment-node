@@ -1,4 +1,4 @@
-import { CarbonCertificateEntity } from '../../carbon-certifcate/entities/carbon-certifcate.entity';
+import { CarbonCertificateEntity } from '../../carbonCertificate/entities/carbonCertificate.entity';
 import {
   Column,
   CreateDateColumn,

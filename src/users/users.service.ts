@@ -17,8 +17,4 @@ export class UsersService {
   findByEmail(email: string): Promise<UserEntity> {
     return this.usersRepository.findOneBy({ email });
   }
-
-  create(data): Promise<UserEntity> {
-    return this.usersRepository.save(data);
-  }
 }
