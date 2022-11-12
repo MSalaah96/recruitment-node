@@ -12,6 +12,11 @@
 4. Now you can reach the api by access nginx gateway through `https://carbon.local.com/` (PORT 80)
 5. Configurations can be found in `.env.local` (root directory)
 
+## How to seed the data
+
+1. After `./install.sh` and the containers are up
+2. npm install && npm run seed
+
 ## Features
 
 1. Full development environment out of the box using `docker` and `docker-compose`
