@@ -42,21 +42,19 @@ services:
     ports:
       - 6004:3000
     networks:
-        carbon-network:
-          ipv4_address: 182.39.0.4
-          aliases:
-            - carbon.api.local.com
+      carbon-network:
+        ipv4_address: 182.39.0.4
+        aliases:
+          - carbon.api.local.com
     restart: unless-stopped
     depends_on:
       - carbon-gateway
       - carbon-database
     volumes:
-    - .:/app
-    - /app/node_modules
+      - .:/app
+      - /app/node_modules
     container_name: carbon-api
     command: npm run start:dev
-
-
 
 volumes:
   cache:
