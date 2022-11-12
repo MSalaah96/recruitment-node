@@ -25,7 +25,7 @@ export class UserCarbonCertificateController {
   @UseGuards(AuthGuard('jwt'))
   @UsePipes(new ValidationPipe({ transform: true }))
   getAll(@Request() req) {
-    return this.userCarbonCertifcateService.getUserCertifcates(req.user.sub);
+    return this.userCarbonCertifcateService.getUserCertificates(req.user.sub);
   }
   @Post('transfer')
   @UseGuards(AuthGuard('jwt'))

@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from '../users/users.service';
 import { AuthService } from './auth.service';
 import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcrypt';
+import * as bcryptjs from 'bcryptjs';
 
 type UsersServiceMock = {
   findByEmail: jest.Mock;
@@ -44,7 +44,7 @@ describe('AuthService', () => {
       ],
     }).compile();
     jest
-      .spyOn(bcrypt, 'compareSync')
+      .spyOn(bcryptjs, 'compareSync')
       .mockImplementation(
         (password, hashedPasswod) => password === hashedPasswod,
       );
@@ -66,13 +66,13 @@ describe('AuthService', () => {
     it('should return a user token', async () => {
       const result = await service.validateUser(user.email, user.password);
       expect(usersService.findByEmail).toBeCalledWith(user.email);
-      expect(bcrypt.compareSync).toBeCalledWith(user.password, user.password);
+      expect(bcryptjs.compareSync).toBeCalledWith(user.password, user.password);
       expect(result).toEqual({ token: 'token', sub: '1' });
     });
     it('should return null', async () => {
       const result = await service.validateUser(user.email, '1234567');
       expect(usersService.findByEmail).toBeCalledWith(user.email);
-      expect(bcrypt.compareSync).toBeCalledWith('1234567', user.password);
+      expect(bcryptjs.compareSync).toBeCalledWith('1234567', user.password);
       expect(result).toEqual(null);
     });
   });

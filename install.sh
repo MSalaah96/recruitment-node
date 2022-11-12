@@ -4,7 +4,7 @@ cd ./gateway/certs
 mkcert carbon.local.com "*.carbon.local.com"
 
 #TODO: Load and update hosts dynamically from docker-compose file
-declare -a hosts=("182.39.0.2 carbon.database.local.com" "182.39.0.1 carbon.local.com" "182.39.0.3 carbon.api.local.com")
+declare -a hosts=("182.39.0.3 carbon.database.local.com" "182.39.0.2 carbon.local.com" "182.39.0.4 carbon.api.local.com")
 
 # get number of hosts
 numberOfHosts=${#hosts[@]}
