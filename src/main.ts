@@ -67,6 +67,7 @@ async function bootstrap() {
         .setDescription(
           `${APP_NAME} API to get users carbon certificates and transfer it between them`,
         )
+        .addBearerAuth()
         .setVersion(APP_VERSION)
         .build(),
     );

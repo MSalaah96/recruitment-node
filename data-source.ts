@@ -11,7 +11,7 @@ const options: DataSourceOptions & SeederOptions = {
   database: process.env.DATABASE_NAME,
   password: process.env.DATABASE_PASSWORD,
   entities: [__dirname + '/**/*.entity.{js,ts}'],
-  synchronize: false,
+  synchronize: process.env.DATABASE_SYNC === 'true',
   logging: true,
   seeds: [__dirname + '/src/database/seeds/**/*{.ts,.js}'],
   factories: [__dirname + '/src/database/factories/**/*{.ts,.js}'],

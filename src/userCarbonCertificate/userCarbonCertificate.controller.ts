@@ -11,11 +11,14 @@ import {
 import { TransferCarbonCertificateDto } from './dtos/transferCarbonCertificate.dto';
 import { UserCarbonCertificateService } from './userCarbonCertificate.service';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('User Carbon Certificates')
 @Controller({
   path: 'user-carbon-certificates',
   version: '1',
 })
+@ApiBearerAuth()
 export class UserCarbonCertificateController {
   constructor(
     private readonly userCarbonCertifcateService: UserCarbonCertificateService,

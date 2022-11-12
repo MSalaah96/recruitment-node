@@ -1,4 +1,5 @@
 #!/bin/bash
+cp ./.env.local ./.env
 mkdir -p ./gateway/certs
 cd ./gateway/certs
 mkcert carbon.local.com "*.carbon.local.com"
