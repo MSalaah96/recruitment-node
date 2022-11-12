@@ -65,7 +65,7 @@ async function bootstrap() {
       new DocumentBuilder()
         .setTitle(APP_NAME)
         .setDescription(
-          `${APP_NAME} API to encode and decode urls plus some statistics`,
+          `${APP_NAME} API to get users carbon certificates and transfer it between them`,
         )
         .setVersion(APP_VERSION)
         .build(),
