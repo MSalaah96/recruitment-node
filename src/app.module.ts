@@ -1,10 +1,17 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Logger } from '@nestjs/common';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
+import { DataSource } from 'typeorm';
+import { typeOrmAsyncConfig } from './config/typeorm.config';
+import { CarbonCertifcateModule } from './carbon-certifcate/carbon-certifcate.module';
+import { UserCarbonCertifcateService } from './user-carbon-certifcate/user-carbon-certifcate.service';
+import { QueryParserMiddleware } from './queryParser.middleware';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -19,21 +26,19 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         limit: config.get('APP_THROTTLE_LIMIT'),
       }),
     }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        type: 'postgres',
-        host: config.get('DATABASE_HOST'),
-        port: config.get('DATABASE_PORT'),
-        username: config.get('DATABASE_USER'),
-        password: config.get('DATABASE_PASSWORD'),
-        database: config.get('DATABASE_NAME'),
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      }),
-    }),
+    TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
+    AuthModule,
+    UsersModule,
+    CarbonCertifcateModule,
   ],
   controllers: [AppController],
-  providers: [AppService, Logger],
+  providers: [AppService, Logger, UserCarbonCertifcateService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private dataSource: DataSource) {}
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(QueryParserMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}
