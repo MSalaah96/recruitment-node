@@ -11,11 +11,13 @@
 3. `cd` into the root directory and run the installer script `./install.sh` (Support Unix based OS only)
 4. Now you can reach the api by access nginx gateway through `https://carbon.local.com/` (PORT 80)
 5. Configurations can be found in `.env.local` (root directory)
+6. All Apis are configured using swagger `https://carbon.local.com/docs`
 
 ## How to seed the data
 
 1. After `./install.sh` and the containers are up
-2. npm install && npm run seed
+2. npm install && npm run seed #logs will be shown to get some user emails that stored
+3. you can use any user email with password `P@ssw0rd` to login and get the user token
 
 ## Features
 

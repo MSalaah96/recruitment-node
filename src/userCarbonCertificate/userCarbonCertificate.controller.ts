@@ -11,7 +11,7 @@ import {
 import { TransferCarbonCertificateDto } from './dtos/transferCarbonCertificate.dto';
 import { UserCarbonCertificateService } from './userCarbonCertificate.service';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('User Carbon Certificates')
 @Controller({
@@ -32,6 +32,7 @@ export class UserCarbonCertificateController {
   }
   @Post('transfer')
   @UseGuards(AuthGuard('jwt'))
+  @ApiBody({ type: TransferCarbonCertificateDto })
   transfer(
     @Body() transferCarbonCertificateDto: TransferCarbonCertificateDto,
     @Request() req,
