@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CarbonCertificateEntity } from './entities/carbonCertificate.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { carbonCertificateApiParams } from './carbonCertificate.ApiParams';
-import { Any, In, Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 
 @Injectable()
 export class CarbonCertificateService {
@@ -21,7 +21,7 @@ export class CarbonCertificateService {
     | CarbonCertificateEntity[]
   > {
     const query = {};
-    if (params.status) {
+    if (params.status && params.status.length > 0) {
       query['status'] = In(params.status);
     }
     if (params && params.paginate) {

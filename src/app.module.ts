@@ -9,8 +9,8 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { DataSource } from 'typeorm';
 import { typeOrmAsyncConfig } from './config/typeorm.config';
-import { UserCarbonCertifcateService } from './user-carbon-certifcate/user-carbon-certifcate.service';
 import { CarbonCertifcateModule } from './carbonCertificate/carbonCertificate.module';
+import { UserCarbonCertificateModule } from './userCarbonCertificate/userCarbonCertificate.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -29,9 +29,10 @@ import { CarbonCertifcateModule } from './carbonCertificate/carbonCertificate.mo
     AuthModule,
     UsersModule,
     CarbonCertifcateModule,
+    UserCarbonCertificateModule,
   ],
   controllers: [AppController],
-  providers: [AppService, Logger, UserCarbonCertifcateService],
+  providers: [AppService, Logger],
 })
 export class AppModule {
   constructor(private dataSource: DataSource) {}

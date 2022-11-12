@@ -2,7 +2,6 @@ import {
   Controller,
   Get,
   Query,
-  Req,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -10,9 +9,9 @@ import { ApiQuery, ApiTags } from '@nestjs/swagger';
 import { carbonCertificateApiParams } from './carbonCertificate.ApiParams';
 import { CarbonCertificateService } from './carbonCertificate.service';
 
-@ApiTags('Carbon Certifcate')
+@ApiTags('Carbon Certificate')
 @Controller({
-  path: 'carbon-certifcates',
+  path: 'carbon-certificates',
   version: '1',
 })
 export class CarbonCertifcateController {

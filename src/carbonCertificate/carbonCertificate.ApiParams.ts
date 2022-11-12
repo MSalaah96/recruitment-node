@@ -1,10 +1,9 @@
-import { IsArray, IsIn, IsNotEmpty, IsString } from 'class-validator';
+import { IsArray, IsIn, IsString } from 'class-validator';
 import { ApiParams } from '../ApiParams';
 import { CarbonCertifcateStatus } from './constants/carbonCertificate.constants';
 export class carbonCertificateApiParams extends ApiParams {
   @IsArray()
   @IsString({ each: true })
-  @IsNotEmpty({ each: true })
   @IsIn(
     [
       CarbonCertifcateStatus.AVAILABLE,
@@ -13,5 +12,5 @@ export class carbonCertificateApiParams extends ApiParams {
     ],
     { each: true },
   )
-  status: string[];
+  status: string[] = [];
 }

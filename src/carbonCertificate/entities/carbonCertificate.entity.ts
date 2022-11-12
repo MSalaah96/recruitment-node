@@ -24,7 +24,7 @@ export class CarbonCertificateEntity {
   status: CarbonCertifcateStatus;
 
   @Column({ nullable: true })
-  ownerId: number | null;
+  ownerId: string | null;
 
   @ManyToOne(() => UserEntity, (user) => user.id, { nullable: true })
   @JoinColumn()

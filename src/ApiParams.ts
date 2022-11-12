@@ -3,7 +3,9 @@ import { IsBoolean, IsNumber } from 'class-validator';
 
 export class ApiParams {
   @IsBoolean()
-  @Transform(({ value }) => value === 'true')
+  @Transform(
+    ({ value }) => value === 'true' || value === true || value === undefined,
+  )
   paginate = true;
   @IsNumber()
   @Type(() => Number)
