@@ -1,30 +1,33 @@
-![Agreena](https://agreena.com/wp-content/uploads/2021/06/agreena-logo.svg)
+# Agreena Task
 
-# NodeJS recruitment test task
+## Description
 
-### Carbon Certificates application API
-Create the API containing endpoints:
-1. Login
-2. List of available Carbon certificates (*no owner*)
-3. List of owned Carbon certificates (*owned by current user*)
-4. Transfer my own Carbon certificate to the another existing user (*based on the User ID parameter*)
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository implementing a Carbon Certifcate Application.
 
-##### Data informations
-**Carbon certificate** should contain the following data:
-- Unique ID
-- Country
-- Status:
-  - `available` (*no owner*)
-  - `owned` (*owner is present and certificate hasn't been transferred*)
-  - `transferred` (*owner is present and certificate has been transferred from one owner to another*)
-- Owner (*relation to existing user, can be empty*)
+## How to use
 
-##### Requirements
-- Application should be written with strong typing (*TypeScript*)
-- Framework is free of choice (NestJS, or others)
-- ORM is free of choice (TypeORM, or others)
-- Authentication should be implemented (*type/package if free of choice*)
-- Seeds should be included (*100 random certificates, 5 random users with certificates and 5 without them*)
-- Tests have to be included (Jest is preferred)
+1. git clone the repo
+2. Install mkcert, docker and docker-compose in your machine
+3. `cd` into the root directory and run the installer script `./install.sh` (Support Unix based OS only)
+4. Now you can reach the api by access nginx gateway through `https://carbon.local.com/` (PORT 80)
+5. Configurations can be found in `.env.local` (root directory)
 
-### Good luck!
+## Features
+
+1. Full development environment out of the box using `docker` and `docker-compose`
+2. Full code coverage unit testing for the main parts
+3. Rate limiter using `@nestjs/throttler`
+4. Local git hooks for `linting` and `testing` using `yorkie` and `lint-staged`
+5. Git actions workflow for PR reviews (`linting` and `testing`)
+6. Some `SOLID` principles
+7. Logging all requests and responses
+
+## Test
+
+```bash
+# unit tests
+$ npm run test
+
+# test coverage
+$ npm run test:cov
+```

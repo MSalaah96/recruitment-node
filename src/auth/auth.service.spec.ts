@@ -79,7 +79,10 @@ describe('AuthService', () => {
   describe('login', () => {
     it('should return a user token', async () => {
       const result = await service.login(user);
-      expect(jwtService.sign).toBeCalledWith({ sub: user.id });
+      expect(jwtService.sign).toBeCalledWith({
+        sub: user.id,
+        email: user.email,
+      });
       expect(result).toEqual({ token: 'token', sub: '1' });
     });
   });
