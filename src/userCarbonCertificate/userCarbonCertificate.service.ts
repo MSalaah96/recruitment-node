@@ -10,13 +10,13 @@ import { CarbonCertifcateStatus } from '../carbonCertificate/constants/carbonCer
 export class UserCarbonCertificateService {
   constructor(
     @InjectRepository(CarbonCertificateEntity)
-    private carbonCertifcateRepository: Repository<CarbonCertificateEntity>,
+    private carbonCertificateRepository: Repository<CarbonCertificateEntity>,
     @InjectRepository(UserEntity)
     private usersRepository: Repository<UserEntity>,
   ) {}
 
-  async getUserCertifcates(userId: string) {
-    const carbonCertifcates = await this.carbonCertifcateRepository.find({
+  async getUserCertificates(userId: string) {
+    const carbonCertifcates = await this.carbonCertificateRepository.find({
       where: {
         ownerId: userId,
       },
@@ -27,7 +27,7 @@ export class UserCarbonCertificateService {
     owner: string,
     transferCarbonCertificateDto: TransferCarbonCertificateDto,
   ) {
-    const carbonCertifcate = await this.carbonCertifcateRepository.findOneBy({
+    const carbonCertifcate = await this.carbonCertificateRepository.findOneBy({
       id: transferCarbonCertificateDto.carbonCertificateId,
     });
     if (!carbonCertifcate) {
@@ -46,6 +46,6 @@ export class UserCarbonCertificateService {
     }
     carbonCertifcate.owner = newOwner;
     carbonCertifcate.status = CarbonCertifcateStatus.TRANSFERRED;
-    return this.carbonCertifcateRepository.save(carbonCertifcate);
+    return this.carbonCertificateRepository.save(carbonCertifcate);
   }
 }
